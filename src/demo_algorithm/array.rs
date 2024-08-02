@@ -1,6 +1,27 @@
 use crate::demo_algorithm::Solution;
 
 impl Solution {
+    /// LeetCode(id=3128,title=直角三角形,difficulty=medium)
+    pub fn number_of_right_triangles(grid: Vec<Vec<i32>>) -> i64 {
+        let mut row = vec![0; grid.len()];
+        let mut col = vec![0; grid[0].len()];
+        for (y, arr) in grid.iter().enumerate() {
+            for (x, v) in arr.iter().enumerate() {
+                col[x] += v;
+                row[y] += v;
+            }
+        }
+        let mut res: i64 = 0;
+        for (y, &ref arr) in grid.iter().enumerate() {
+            for (x, &v) in arr.iter().enumerate() {
+                if v == 1 {
+                    res += (col[x] - 1) as i64 * (row[y] - 1) as i64
+                }
+            }
+        }
+        res
+    }
+
     /// LeetCode(id=16,title=最接近的三数之和,difficulty=medium)
     pub fn three_sum_closest(nums: Vec<i32>, target: i32) -> i32 {
         let stop1 = nums.len() - 2;
