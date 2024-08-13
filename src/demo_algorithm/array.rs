@@ -1,6 +1,19 @@
 use crate::demo_algorithm::Solution;
 
 impl Solution {
+    /// LeetCode(id=3151,title=特殊数组 I,difficulty=easy)
+    pub fn is_array_special(nums: Vec<i32>) -> bool {
+        let mut pre = nums[0] & 1;
+        for i in 1..nums.len() {
+            let odd = nums[i] & 1;
+            if odd == pre {
+                return false;
+            }
+            pre = odd;
+        }
+        return true;
+    }
+
     /// LeetCode(id=3128,title=直角三角形,difficulty=medium)
     pub fn number_of_right_triangles(grid: Vec<Vec<i32>>) -> i64 {
         let mut row = vec![0; grid.len()];
